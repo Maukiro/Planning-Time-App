@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             cursor.close()
         } else {
             Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
+            //Hola
         }
     }
 }
