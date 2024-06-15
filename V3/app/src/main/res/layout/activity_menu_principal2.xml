@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu_principal2">
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="monospace"
+        android:text="Usuario"
+        android:textAlignment="center"
+        android:textColor="#1F41BB"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonNotes"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonChatBot"
+        app:srcCompat="@drawable/notas" />
+
+    <ImageButton
+        android:id="@+id/imageButtonChatBot"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/planlogo" />
+
+    <ImageButton
+        android:id="@+id/imageButtonTasks"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonNotes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/tasks_icon" />
+
+    <TextView
+        android:id="@+id/textViewNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Notas"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonNotes"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonNotes"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonNotes" />
+
+    <TextView
+        android:id="@+id/textViewChatBot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="ChatBot"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonChatBot"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonChatBot"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonChatBot" />
+
+    <TextView
+        android:id="@+id/textViewTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tareas"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonTasks"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonTasks"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonTasks" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
