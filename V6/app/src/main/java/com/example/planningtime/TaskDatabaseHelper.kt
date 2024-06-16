@@ -35,7 +35,7 @@ class TaskDatabaseHelper(context: Context) : SQLiteOpenHelper(context, "sharedDa
                 val progress = cursor.getInt(cursor.getColumnIndexOrThrow("progreso"))
                 val type = TaskType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("tipo")))
                 val impact = TaskImpact.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("impacto")))
-                tasks.add(Task(id, title, description, dateTime, progress, type = type, impact = impact))
+                tasks.add(Task(id, title, description, dateTime, progress, false, type, impact))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -79,5 +79,35 @@ class TaskDatabaseHelper(context: Context) : SQLiteOpenHelper(context, "sharedDa
     fun deleteTask(task: Task) {
         val db = this.writableDatabase
         db.delete("tareas", "id = ?", arrayOf(task.id.toString()))
+    }
+
+    fun getTasksByDate(date: String): List<Task> {
+        val tasks = mutableListOf<Task>()
+        val db = this.readableDatabase
+        val cursor = db.query(
+            "tareas",
+            null,
+            "fecha_hora LIKE ?",
+            arrayOf("$date%"),
+            null,
+            null,
+            null
+        )
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                val title = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
+                val description = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"))
+                val dateTimeString = cursor.getString(cursor.getColumnIndexOrThrow("fecha_hora"))
+                val dateTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(dateTimeString)
+                val progress = cursor.getInt(cursor.getColumnIndexOrThrow("progreso"))
+                val type = TaskType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("tipo")))
+                val impact = TaskImpact.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("impacto")))
+                tasks.add(Task(id, title, description, dateTime, progress, false, type, impact))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return tasks
     }
 }
