@@ -31,6 +31,18 @@ class TasksAdapter(private val tasksList: List<Task>, private val itemClick: (Ta
             typeColorView.setBackgroundColor(getColorForTaskType(task.type))
             impactTextView.text = task.impact.displayName
 
+            val currentTime = System.currentTimeMillis()
+            val timeRemaining = task.dateTime.time - currentTime
+            var auxiliarText = ""
+            if(task.progress==100){
+                println("Existe una rara")
+                auxiliarText = "[Terminada] "+task.title
+                titleTextView.text = auxiliarText
+            }else if(timeRemaining<=0){
+                auxiliarText= "[Agotada] "+task.title
+                titleTextView.text = auxiliarText
+            }
+
             // Manejar la selección solo en el CheckBox
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 task.isSelected = isChecked

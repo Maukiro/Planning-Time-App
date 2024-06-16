@@ -60,11 +60,22 @@ class menu_principal2 : AppCompatActivity() {
 
     private fun updateTaskCompletionPercentage() {
         val tasks = taskDatabaseHelper.getAllTasks()
-        val totalTasks = tasks.size
-        val totalProgress = tasks.sumBy { it.progress }
+        var sumaProg = 0
+        var elementos = 0
+        for(tarea in tasks){
+            val currentTime = System.currentTimeMillis()
+            val timeRemaining = tarea.dateTime.time - currentTime
+            if(timeRemaining>0){
+                elementos++
+                sumaProg+=tarea.progress
+            }
+        }
 
-        val completionPercentage = if (totalTasks > 0) {
-            (totalProgress / totalTasks)
+        //val totalTasks = tasks.size
+        //val totalProgress = tasks.sumBy { it.progress }
+
+        val completionPercentage = if (elementos > 0) {
+            (sumaProg / elementos)
         } else {
             0
         }

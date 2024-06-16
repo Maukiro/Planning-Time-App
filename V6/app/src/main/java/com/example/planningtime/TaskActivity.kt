@@ -131,18 +131,19 @@ class TaskActivity : AppCompatActivity() {
 
         val currentTime = System.currentTimeMillis()
         val timeRemaining = task.dateTime.time - currentTime
+        if(timeRemaining <=0){
+            return Double.MIN_VALUE
+        }
         val progress = task.progress
-        val impact = when (task.impact) {
+        var impact = when (task.impact) {
             TaskImpact.VERY_LOW -> 1
             TaskImpact.LOW -> 2
             TaskImpact.MEDIUM -> 3
             TaskImpact.HIGH -> 4
             TaskImpact.VERY_HIGH -> 5
         }
-
         val normalizedTime = timeRemaining / (1000.0 * 60 * 60 * 24) // días restantes
-        val normalizedProgress = progress / 100.0 // progreso en porcentaje
-
-        return impact / (normalizedTime + 1) / (normalizedProgress + 1)
+        val normalizedProgress = (100-progress) / 100.0 // progreso en porcentaje
+        return (impact* (normalizedProgress)) / (normalizedTime + 1)
     }
 }

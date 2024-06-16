@@ -72,5 +72,24 @@ class crear_nota : AppCompatActivity() {
         }else{
             Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
         }
+        /*var con=SQLite(this,"datos",null,1)
+        var baseDatos =con.writableDatabase
+        var mensaje = ""
+        var titulo = ""
+        for(i in 1..1000){
+            mensaje+='a'
+        }
+        for(i in 1..30){
+            titulo+='b'
+        }
+        for(i in 1..5000){
+            var registro= ContentValues()
+            registro.put("titulo",i.toString()+titulo)
+            registro.put("descripcion",i.toString()+mensaje)
+            baseDatos.insert("notas",null,registro)
+        }
+        println("listo :)")
+        */
+        // Obtener los textos de email y password
     }
 }
